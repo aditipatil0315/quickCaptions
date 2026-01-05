@@ -37,21 +37,31 @@ function AudioRecorder({ setRawText }) {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-6 text-center">
+    <div className="text-center">
       {!isRecording ? (
         <button
           onClick={startRecording}
-          className="border border-black px-6 py-2 rounded hover:bg-black hover:text-white transition"
+          className="w-full sm:w-auto bg-baby-blue text-dark-brown border-2 border-baby-blue px-6 sm:px-8 py-3 rounded-lg font-medium hover:bg-blue-200 hover:border-blue-300 transition-colors duration-200 shadow-sm text-base sm:text-lg"
         >
-          Start Recording
+          🎤 Start Recording
         </button>
       ) : (
-        <button
-          onClick={stopRecording}
-          className="border border-black px-6 py-2 rounded bg-black text-white"
-        >
-          Stop Recording
-        </button>
+        <div className="space-y-4">
+          <button
+            onClick={stopRecording}
+            className="w-full sm:w-auto bg-dark-brown text-white border-2 border-dark-brown px-6 sm:px-8 py-3 rounded-lg font-medium hover:bg-brown-800 hover:border-brown-800 transition-colors duration-200 shadow-sm text-base sm:text-lg"
+          >
+            ⏹️ Stop Recording
+          </button>
+          
+          {/* Recording status indicator */}
+          <div className="flex items-center justify-center gap-3">
+            <div className="h-4 w-4 bg-red-500 rounded-full animate-pulse"></div>
+            <span className="text-dark-brown font-medium text-sm sm:text-base">
+              Recording... Speak clearly into your microphone
+            </span>
+          </div>
+        </div>
       )}
     </div>
   );

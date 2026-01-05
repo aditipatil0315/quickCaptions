@@ -12,7 +12,7 @@ function App() {
   const [settings, setSettings] = useState({
     wordsPerLine: 3,
     fontSize: 36,
-    color: "#000000",
+    color: "#5C4033",
   });
 
   const generateCaptions = () => {
@@ -22,27 +22,87 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black p-6">
-      <h1 className="text-3xl font-bold text-center mb-6">Voice to Captions</h1>
+    <div className="min-h-screen bg-butter-yellow text-dark-brown">
+      {/* Page Container */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-10">
 
-      <AudioRecorder setRawText={setRawText} />
+        {/* Header */}
+        <header className="text-center mb-12 space-y-2">
+          <h1 className="text-3xl sm:text-4xl font-bold">
+            Voice to Captions
+          </h1>
+          <p className="text-dark-brown/70 text-sm sm:text-base max-w-xl mx-auto">
+            Record audio, generate captions, preview them, and export in multiple formats
+          </p>
+        </header>
 
-      {rawText && (
-        <CaptionSettings
-          settings={settings}
-          setSettings={setSettings}
-          onGenerate={generateCaptions}
-        />
-      )}
+        {/* Main Content */}
+        <main className="space-y-10">
 
-     
+          {/* Audio Recording Section */}
+          <section className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-baby-blue/30 space-y-6">
+            <h2 className="text-xl font-semibold">
+              1. Record Audio
+            </h2>
 
-      {captions.length > 0 && (
-        <>
-          <CaptionPreview captions={captions} settings={settings} />
-          <DownloadCaptions captions={captions} />
-        </>
-      )}
+            <AudioRecorder setRawText={setRawText} />
+
+            {rawText && (
+              <div className="p-4 bg-butter-yellow/50 rounded-xl border border-baby-blue space-y-2">
+                <h3 className="font-medium text-sm sm:text-base">
+                  Transcribed Text
+                </h3>
+                <p className="text-sm sm:text-base leading-relaxed">
+                  {rawText}
+                </p>
+              </div>
+            )}
+          </section>
+
+          {/* Caption Settings */}
+          {rawText && (
+            <section className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-baby-blue/30 space-y-6">
+              <h2 className="text-xl font-semibold">
+                2. Caption Settings
+              </h2>
+
+              <CaptionSettings
+                settings={settings}
+                setSettings={setSettings}
+                onGenerate={generateCaptions}
+              />
+            </section>
+          )}
+
+          {/* Preview & Export */}
+          {captions.length > 0 && (
+            <section className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-baby-blue/30 space-y-8">
+              <h2 className="text-xl font-semibold">
+                3. Preview & Export
+              </h2>
+
+              <div className="space-y-8">
+                <CaptionPreview captions={captions} settings={settings} />
+                <DownloadCaptions captions={captions} />
+              </div>
+            </section>
+          )}
+
+        </main>
+
+        {/* Footer */}
+        <footer className="mt-16 pt-6 border-t border-baby-blue/30 text-center text-dark-brown/60 text-sm space-y-1">
+          <p>Import caption files directly into your video editing software</p>
+          <p>Supports SRT and VTT formats</p>
+        </footer>
+
+      </div>
+
+      
+
+      
+
+      
     </div>
   );
 }

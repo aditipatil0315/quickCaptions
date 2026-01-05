@@ -11,10 +11,27 @@
   box-sizing: border-box;
 }
 
-html,body {
+/* html,body {
   height: 100%;
   width: 100%;
+} */
+
+
+
+
+.bg-butter-yellow {
+  background-color: #FDF6E3;
 }
 
+.bg-baby-blue {
+  background-color: #BFDBFE;
+}
 
+.text-dark-brown {
+  color: #5C4033;
+}
+
+.border-baby-blue {
+  border-color: #BFDBFE;
+}
 

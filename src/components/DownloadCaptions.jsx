@@ -15,31 +15,49 @@ function DownloadCaptions({ captions }) {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-6 border p-4 rounded">
-      <h2 className="font-semibold mb-3">Download Captions</h2>
-
-      <div className="flex gap-3">
+    <div className="space-y-4">
+      <h3 className="font-semibold text-dark-brown text-lg">
+        Export Captions
+      </h3>
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <button
           onClick={() =>
             downloadFile(generateSRT(captions), "captions.srt")
           }
-          className="flex-1 border border-black py-2 rounded hover:bg-black hover:text-white transition"
+          className="flex items-center justify-center gap-2 bg-baby-blue text-dark-brown border-2 border-baby-blue py-3 px-4 rounded-lg font-medium hover:bg-blue-200 hover:border-blue-300 transition-colors duration-200 shadow-sm text-base"
         >
-          Download SRT
+          <span className="text-lg">📥</span>
+          <span>Download SRT</span>
         </button>
 
         <button
           onClick={() =>
             downloadFile(generateVTT(captions), "captions.vtt")
           }
-          className="flex-1 border border-black py-2 rounded hover:bg-black hover:text-white transition"
+          className="flex items-center justify-center gap-2 bg-baby-blue text-dark-brown border-2 border-baby-blue py-3 px-4 rounded-lg font-medium hover:bg-blue-200 hover:border-blue-300 transition-colors duration-200 shadow-sm text-base"
         >
-          Download VTT
+          <span className="text-lg">📥</span>
+          <span>Download VTT</span>
         </button>
       </div>
 
-      <p className="text-xs mt-3 text-center">
-        Import these files directly into your video editing software.
+      <div className="bg-butter-yellow/50 border border-baby-blue rounded-lg p-3 sm:p-4">
+        <h4 className="font-medium text-dark-brown mb-2 text-sm">
+          Supported Software:
+        </h4>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs text-dark-brown/70">
+          <div>• Adobe Premiere Pro</div>
+          <div>• Final Cut Pro</div>
+          <div>• DaVinci Resolve</div>
+          <div>• iMovie</div>
+          <div>• YouTube Studio</div>
+          <div>• VLC Media Player</div>
+        </div>
+      </div>
+
+      <p className="text-xs text-dark-brown/60 text-center">
+        Files are ready to import into your video editing software
       </p>
     </div>
   );
