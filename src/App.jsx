@@ -3,6 +3,7 @@ import AudioRecorder from "./components/AudioRecorder";
 import CaptionSettings from "./components/CaptionSettings";
 import CaptionPreview from "./components/CaptionPreview";
 import { formatCaptions } from "./utils/captionFormatter";
+import DownloadCaptions from "./components/DownloadCaptions";
 
 function App() {
   const [rawText, setRawText] = useState("");
@@ -22,9 +23,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white text-black p-6">
-      <h1 className="text-3xl font-bold text-center mb-6">
-        Voice to Captions
-      </h1>
+      <h1 className="text-3xl font-bold text-center mb-6">Voice to Captions</h1>
 
       <AudioRecorder setRawText={setRawText} />
 
@@ -36,8 +35,13 @@ function App() {
         />
       )}
 
+     
+
       {captions.length > 0 && (
-        <CaptionPreview captions={captions} settings={settings} />
+        <>
+          <CaptionPreview captions={captions} settings={settings} />
+          <DownloadCaptions captions={captions} />
+        </>
       )}
     </div>
   );
