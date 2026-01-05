@@ -3,28 +3,27 @@ import { generateVTT } from "../utils/exporters/vtt";
 
 function DownloadCaptions({ captions }) {
   const downloadFile = (content, filename) => {
-    const blob = new Blob([content], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
+    const blob = new Blob([content], {
+      type: filename.endsWith(".vtt")
+        ? "text/vtt; charset=utf-8"
+        : "application/x-subrip; charset=utf-8",
+    });
 
+    const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
     a.download = filename;
     a.click();
-
     URL.revokeObjectURL(url);
   };
 
   return (
     <div className="space-y-4">
-      <h3 className="font-semibold text-dark-brown text-lg">
-        Export Captions
-      </h3>
-      
+      <h3 className="font-semibold text-dark-brown text-lg">Export Captions</h3>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <button
-          onClick={() =>
-            downloadFile(generateSRT(captions), "captions.srt")
-          }
+          onClick={() => downloadFile(generateSRT(captions), "captions.srt")}
           className="flex items-center justify-center gap-2 bg-baby-blue text-dark-brown border-2 border-baby-blue py-3 px-4 rounded-lg font-medium hover:bg-blue-200 hover:border-blue-300 transition-colors duration-200 shadow-sm text-base"
         >
           <span className="text-lg">📥</span>
@@ -32,9 +31,7 @@ function DownloadCaptions({ captions }) {
         </button>
 
         <button
-          onClick={() =>
-            downloadFile(generateVTT(captions), "captions.vtt")
-          }
+          onClick={() => downloadFile(generateVTT(captions), "captions.vtt")}
           className="flex items-center justify-center gap-2 bg-baby-blue text-dark-brown border-2 border-baby-blue py-3 px-4 rounded-lg font-medium hover:bg-blue-200 hover:border-blue-300 transition-colors duration-200 shadow-sm text-base"
         >
           <span className="text-lg">📥</span>
