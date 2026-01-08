@@ -74,7 +74,7 @@ function App() {
             </section>
           )}
 
-          {/* Preview & Export */}
+
           {captions.length > 0 && (
             <section className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-baby-blue/30 space-y-8">
               <h2 className="text-xl font-semibold">
@@ -90,7 +90,7 @@ function App() {
 
         </main>
 
-        {/* Footer */}
+
         <footer className="mt-16 pt-6 border-t border-baby-blue/30 text-center text-dark-brown/60 text-sm space-y-1">
           <p>Import caption files directly into your video editing software</p>
           <p>Supports SRT and VTT formats</p>
